@@ -7,12 +7,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "store/rootReducer";
+import { BrowserRouter } from "react-router-dom";
 
 const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );

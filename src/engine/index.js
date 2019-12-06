@@ -7,11 +7,13 @@ let args = {
 };
 
 // Generate the tree
-merkle.fromArray(args, function(err, tree) {
-  if (!err) {
-    console.log(tree);
-    console.log("Root hash: " + tree.root);
-    console.log("Number of leaves: " + tree.leaves);
-    console.log("Number of levels: " + tree.levels);
-  }
-});
+const getMerkelTree = args => {
+  merkle.fromArray(args, function(err, tree) {
+    if (!err) {
+      console.log(tree);
+      console.log("Root hash: " + tree.root);
+      console.log("Number of leaves: " + tree.leaves);
+      console.log("Number of levels: " + tree.levels);
+    }
+  });
+};

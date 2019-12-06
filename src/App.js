@@ -39,14 +39,17 @@ function App() {
   };
   return (
     <div className="App">
-      <Container fluid="false" className="p-0">
+      <Container fluid="true" className="">
         <Navbar className="border-bottom" bg="transparent" expand="lg">
           <Navbar.Brand>Merkle Tree Generator</Navbar.Brand>
           <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
           <Navbar.Collapse id="navbar-toggle">
             <Nav className="ml-auto">
               <a className="nav-link" href="/">
-                Block8 Logo Placeholder
+                <img
+                  src="https://block8.com/images/home/block8-icon.svg"
+                  alt="Block"
+                />
               </a>
             </Nav>
           </Navbar.Collapse>

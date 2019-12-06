@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import _ from "lodash";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const DirectInput = () => {
   const [numberOfInputs, setNumberOfInputs] = React.useState(1);
@@ -35,7 +35,7 @@ const DirectInput = () => {
   };
 
   return (
-    <Container>
+    <Container fluid="false" className="py-3">
       <Row>
         <Col>
           {_.times(numberOfInputs, i => (
