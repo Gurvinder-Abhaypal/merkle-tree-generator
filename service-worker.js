@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/merkle-tree-generator/precache-manifest.c6a80336e0194e909e5dbd0e98538d42.js"
+  "/merkle-tree-generator/precache-manifest.b4173c8e1929eb5c715d932085ec5e34.js"
 );
 
 self.addEventListener('message', (event) => {
