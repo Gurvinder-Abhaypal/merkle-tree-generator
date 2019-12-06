@@ -5,10 +5,13 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import Button from "react-bootstrap/Button";
 
 import DirectInput from "components/DirectInput";
 
 function App() {
+  const [currentMethod, setCurrentMethod] = React.useState("direct-input");
+
   return (
     <div className="App">
       <Container fluid="false" className="p-0">
@@ -35,6 +38,10 @@ function App() {
             Contact Does not work!
           </Tab>
         </Tabs>
+
+        <div>
+          <Button variant="outline-primary">Submit</Button>
+        </div>
       </Container>
     </div>
   );

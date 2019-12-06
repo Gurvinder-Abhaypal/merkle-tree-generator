@@ -4,22 +4,32 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import _ from "lodash";
 
 const DirectInput = () => {
+  const [numberOfInputs, setNumberOfInputs] = React.useState(1);
   return (
     <Container>
       <Row>
         <Col>
-          <div>
-            <FormControl
-              as="textarea"
-              placeholder="Enter a Number/JSON/String"
-              aria-label="With textarea"
-            />
-          </div>
+          {_.times(numberOfInputs, i => (
+            <div key={i}>
+              <FormControl
+                as="textarea"
+                placeholder="Enter a Number/JSON/String"
+                aria-label="With textarea"
+                className="inputs"
+              />
+            </div>
+          ))}
         </Col>
         <Col>
-          <Button variant="outline-primary">Add Another Input</Button>
+          <Button
+            variant="outline-secondary"
+            onClick={() => setNumberOfInputs(numberOfInputs + 1)}
+          >
+            Add Another Input
+          </Button>
         </Col>
       </Row>
     </Container>
