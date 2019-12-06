@@ -63,6 +63,7 @@ function App() {
               <a
                 href="https://en.wikipedia.org/wiki/Merkle_tree"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 What's a merkel Tree ?
               </a>
@@ -85,6 +86,7 @@ function App() {
           </Tab>
         </Tabs>
 
+        <div className="py-4"></div>
         <div className="py-4">
           <Button variant="primary" onClick={() => createMerkelTree()}>
             Generate
