@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "App.css";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
+
+import DirectInput from "components/DirectInput";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container fluid="false" className="p-0">
+        <Navbar className="border-bottom" bg="transparent" expand="lg">
+          <Navbar.Brand>Merkle Tree Generator</Navbar.Brand>
+          <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
+          <Navbar.Collapse id="navbar-toggle">
+            <Nav className="ml-auto">
+              <a className="nav-link" href="/">
+                Block8 Logo Placeholder
+              </a>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
+        <Tabs defaultActiveKey="direct-input" id="uncontrolled-tab-example">
+          <Tab eventKey="direct-input" title="Direct Input">
+            <DirectInput />
+          </Tab>
+          <Tab eventKey="profile" title="Profile">
+            Profile Works!
+          </Tab>
+          <Tab eventKey="contact" title="Contact" disabled>
+            Contact Does not work!
+          </Tab>
+        </Tabs>
+      </Container>
     </div>
   );
 }
