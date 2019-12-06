@@ -6,11 +6,16 @@ import Nav from "react-bootstrap/Nav";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Button from "react-bootstrap/Button";
+import { useSelector, useDispatch } from "react-redux";
 
 import DirectInput from "components/DirectInput";
 
 function App() {
-  const [currentMethod, setCurrentMethod] = React.useState("direct-input");
+  const inputMethod = useSelector(state => state.inputMethod);
+  const globalInputs = useSelector(state => state.inputs);
+  const dispatch = useDispatch();
+  console.log(inputMethod);
+  console.log(globalInputs);
 
   return (
     <div className="App">
@@ -27,15 +32,16 @@ function App() {
           </Navbar.Collapse>
         </Navbar>
 
-        <Tabs defaultActiveKey="direct-input" id="uncontrolled-tab-example">
+        <Tabs
+          defaultActiveKey="direct-input"
+          id="uncontrolled-tab-example"
+          onSelect={k => dispatch({ type: "ALTER_INPUT_METHOD", payload: k })}
+        >
           <Tab eventKey="direct-input" title="Direct Input">
             <DirectInput />
           </Tab>
-          <Tab eventKey="profile" title="Profile">
-            Profile Works!
-          </Tab>
-          <Tab eventKey="contact" title="Contact" disabled>
-            Contact Does not work!
+          <Tab eventKey="via-file" title="Via File">
+            Upload File
           </Tab>
         </Tabs>
 
