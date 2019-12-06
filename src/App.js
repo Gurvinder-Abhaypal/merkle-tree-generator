@@ -9,14 +9,33 @@ import Button from "react-bootstrap/Button";
 import { useSelector, useDispatch } from "react-redux";
 
 import DirectInput from "components/DirectInput";
+let merkle = require("merkle-tree-gen");
 
 function App() {
   const inputMethod = useSelector(state => state.inputMethod);
   const globalInputs = useSelector(state => state.inputs);
   const dispatch = useDispatch();
+
+  const [merkelTree, setMerkelTree] = React.useState("");
   console.log(inputMethod);
   console.log(globalInputs);
 
+  const createMerkelTree = () => {
+    console.log("Creating Merkel Tree");
+    let args = {
+      array: globalInputs,
+      hashalgo: "sha256"
+    };
+    merkle.fromArray(args, function(err, tree) {
+      if (!err) {
+        setMerkelTree(JSON.stringify(tree));
+        console.log(tree);
+        console.log("Root hash: " + tree.root);
+        console.log("Number of leaves: " + tree.leaves);
+        console.log("Number of levels: " + tree.levels);
+      }
+    });
+  };
   return (
     <div className="App">
       <Container fluid="false" className="p-0">
@@ -46,8 +65,12 @@ function App() {
         </Tabs>
 
         <div>
-          <Button variant="outline-primary">Submit</Button>
+          <Button variant="outline-primary" onClick={() => createMerkelTree()}>
+            Submit
+          </Button>
         </div>
+
+        <div>{merkelTree}</div>
       </Container>
     </div>
   );
