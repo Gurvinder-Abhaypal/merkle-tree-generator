@@ -11,7 +11,6 @@ const DirectInput = () => {
   const [numberOfInputs, setNumberOfInputs] = React.useState(1);
   const [localInputs, setLocalInputs] = React.useState([""]);
 
-  //   const inputs = useSelector(state => state.inputs);
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch({ type: "ALTER_INPUT", payload: localInputs });
@@ -37,7 +36,7 @@ const DirectInput = () => {
   return (
     <Container fluid="false" className="py-3">
       <Row>
-        <Col>
+        <Col className="p-0">
           {_.times(numberOfInputs, i => (
             <div key={i}>
               <FormControl

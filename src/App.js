@@ -8,6 +8,7 @@ import Tab from "react-bootstrap/Tab";
 import Button from "react-bootstrap/Button";
 import { useSelector, useDispatch } from "react-redux";
 import JSONPretty from "react-json-pretty";
+import Jumbotron from "react-bootstrap/Jumbotron";
 
 import DirectInput from "components/DirectInput";
 let merkle = require("merkle-tree-gen");
@@ -39,7 +40,7 @@ function App() {
   };
   return (
     <div className="App">
-      <Container fluid="true" className="">
+      <Container fluid="false">
         <Navbar className="border-bottom" bg="transparent" expand="lg">
           <Navbar.Brand>Merkle Tree Generator</Navbar.Brand>
           <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
@@ -55,6 +56,22 @@ function App() {
           </Navbar.Collapse>
         </Navbar>
 
+        <Jumbotron fluid className="bg-transparent py-4 my-4">
+          <Container>
+            <h1>Merkel Tree Generator Online</h1>
+            <p>
+              <a
+                href="https://en.wikipedia.org/wiki/Merkle_tree"
+                target="_blank"
+              >
+                What's a merkel Tree ?
+              </a>
+            </p>
+          </Container>
+        </Jumbotron>
+      </Container>
+
+      <Container className="" style={{ padding: "0 1.3rem" }}>
         <Tabs
           defaultActiveKey="direct-input"
           id="uncontrolled-tab-example"
@@ -68,9 +85,9 @@ function App() {
           </Tab>
         </Tabs>
 
-        <div>
-          <Button variant="outline-primary" onClick={() => createMerkelTree()}>
-            Submit
+        <div className="py-4">
+          <Button variant="primary" onClick={() => createMerkelTree()}>
+            Generate
           </Button>
         </div>
 
