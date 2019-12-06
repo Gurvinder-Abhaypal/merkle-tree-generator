@@ -7,6 +7,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Button from "react-bootstrap/Button";
 import { useSelector, useDispatch } from "react-redux";
+import JSONPretty from "react-json-pretty";
 
 import DirectInput from "components/DirectInput";
 let merkle = require("merkle-tree-gen");
@@ -70,7 +71,9 @@ function App() {
           </Button>
         </div>
 
-        <div>{merkelTree}</div>
+        <div>
+          <JSONPretty id="json-pretty" data={merkelTree}></JSONPretty>
+        </div>
       </Container>
     </div>
   );
