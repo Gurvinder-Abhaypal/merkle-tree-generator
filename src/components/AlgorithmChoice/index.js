@@ -1,13 +1,15 @@
-// import React from "react";
-// import { useDispatch } from "react-redux";
-// import Form from "react-bootstrap/Form";
+import React from "react";
+import { useDispatch } from "react-redux";
+import Form from "react-bootstrap/Form";
 
-// const AlgorithmChoice = () => {
+const AlgorithmChoice = () => {
+  const dispatch = useDispatch();
 
-//     const dispatch = useDispatch();
+  return (
+    <div className="py-3">
+      <Form.Check inline label="2" type="radio" id="" />
+    </div>
+  );
+};
 
-//     return <div className="py-3">
-//       <Form.Check inline label="2" type="radio" id="" />
-
-//     </div>
-// }
+export default AlgorithmChoice;
