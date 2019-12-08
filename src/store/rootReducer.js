@@ -9,6 +9,8 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, inputMethod: action.payload };
     case "ALTER_INPUT":
       return { ...state, inputs: action.payload };
+    case "ALTER_ENCRYPTION_ALGORITHM":
+      return { ...state, encryptionAlgorithm: action.payload };
     default:
       return state;
   }
