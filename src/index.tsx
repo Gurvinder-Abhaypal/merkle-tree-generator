@@ -5,11 +5,11 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import rootReducer from "store/rootReducer";
+import { createStore, Store } from "redux";
+import { rootReducer, RootState } from "store";
 import { BrowserRouter } from "react-router-dom";
 
-const store = createStore(rootReducer);
+const store: Store<RootState> = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>

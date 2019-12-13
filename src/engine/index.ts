@@ -1,4 +1,5 @@
-let merkle = require("merkle-tree-gen");
+//@ts-ignore
+import * as merkle from "merkle-tree-gen";
 
 // Set up the arguments
 let args = {
@@ -7,8 +8,8 @@ let args = {
 };
 
 // Generate the tree
-const getMerkelTree = args => {
-  merkle.fromArray(args, function(err, tree) {
+const getMerkleTree = (args: any) => {
+  merkle.fromArray(args, function(err: any, tree: any) {
     if (!err) {
       console.log(tree);
       console.log("Root hash: " + tree.root);

@@ -6,16 +6,17 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
+import { alterInputAction } from "store/app/actions";
 
 const DirectInput = () => {
   const [numberOfInputs, setNumberOfInputs] = React.useState(1);
   const [localInputs, setLocalInputs] = React.useState([""]);
 
   const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch({ type: "ALTER_INPUT", payload: localInputs });
-  }, [dispatch, localInputs]);
-  const alterInput = (inputIndex, newInput) => {
+  // React.useEffect(() => {
+  //   dispatch({ type: "ALTER_INPUT", payload: localInputs });
+  // }, [dispatch, localInputs]);
+  const alterInput = (inputIndex: number, newInput: string) => {
     const newList = localInputs.map((item, j) => {
       if (j === inputIndex) {
         return newInput;
@@ -24,17 +25,17 @@ const DirectInput = () => {
       }
     });
     setLocalInputs(newList);
-    dispatch({ type: "ALTER_INPUT", payload: localInputs });
+    dispatch(alterInputAction(localInputs));
   };
 
   const addInput = () => {
     const newInputs = [...localInputs, ""];
     setLocalInputs(newInputs);
-    dispatch({ type: "ALTER_INPUT", payload: localInputs });
+    dispatch(alterInputAction(localInputs));
   };
 
   return (
-    <Container fluid="false" className="py-3">
+    <Container fluid={false} className="py-3">
       <Row>
         <Col className="p-0">
           {_.times(numberOfInputs, i => (
@@ -44,7 +45,7 @@ const DirectInput = () => {
                 placeholder="Enter a Number/JSON/String"
                 aria-label="With textarea"
                 className="inputs"
-                onChange={e => alterInput(i, e.target.value)}
+                onChange={e => alterInput(i, e.currentTarget.value)}
               />
             </div>
           ))}
