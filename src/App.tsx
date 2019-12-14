@@ -1,11 +1,10 @@
 import React from "react";
 import "App.css";
-import { useDispatch } from "react-redux";
+
 import { useSelector } from "utils/TypedUseSelector";
 import JSONPretty from "react-json-pretty";
 
 import {
-  Container,
   AppBar,
   Button,
   Toolbar,
@@ -163,6 +162,18 @@ function App() {
               maxHeight: "500px"
             }}
           >
+            <Typography
+              variant="h5"
+              align="left"
+              style={{
+                fontWeight: "bold",
+                paddingLeft: "0.2em",
+                borderBottom: "1px solid",
+                borderBottomStyle: "dashed"
+              }}
+            >
+              Generated merkle tree
+            </Typography>
             <JSONPretty id="json-pretty" data={merkleTree}></JSONPretty>
           </Grid>
         </Grid>
