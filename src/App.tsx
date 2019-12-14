@@ -196,14 +196,14 @@ function App() {
               }}
             >
               Generated merkle tree
-              <img
+              {/* <img
                 src={require("./images/content_copy.png")}
                 style={{
                   height: 20,
                   width: 20,
                   marginLeft: 250
                 }}
-              ></img>
+              ></img> */}
             </Typography>
             <JSONPretty id="json-pretty" data={merkleTree}></JSONPretty>
           </Grid>
