@@ -1,9 +1,8 @@
 import React from "react";
 import "App.css";
-
 import { useSelector } from "utils/TypedUseSelector";
 import JSONPretty from "react-json-pretty";
-
+import { useDispatch } from "react-redux";
 import {
   AppBar,
   Button,
@@ -18,6 +17,7 @@ import {
 import DirectInput from "components/DirectInput";
 import { alterInputMethodAction } from "store/app/actions";
 import SwipeableViews from "react-swipeable-views";
+import { setMerkleTreeAction } from "store/merkleTree/actions";
 //@ts-ignore
 let merkle = require("merkle-tree-gen");
 
@@ -45,8 +45,10 @@ function TabPanel(props: TabPanelProps) {
 function App() {
   const inputMethod = useSelector(state => state.app.inputMethod);
   const globalInputs = useSelector(state => state.app.inputs);
+  const merkleTree = useSelector(state => state.merkleTree.merkleTree);
 
-  const [merkleTree, setMerkleTree] = React.useState("");
+  const dispatch = useDispatch();
+
   console.log(inputMethod);
   console.log(globalInputs);
 
@@ -56,17 +58,28 @@ function App() {
       array: globalInputs,
       hashalgo: "sha256"
     };
-
     console.log(args);
     merkle.fromArray(args, function(err: any, tree: any) {
       if (!err) {
-        setMerkleTree(JSON.stringify(tree));
+        dispatch(setMerkleTreeAction(JSON.stringify(tree)));
         console.log(tree);
         console.log("Root hash: " + tree.root);
         console.log("Number of leaves: " + tree.leaves);
         console.log("Number of levels: " + tree.levels);
       }
     });
+  };
+
+  const downloadMerkleTree = () => {
+    var data = "text/json;charset=utf-8," + encodeURIComponent(merkleTree);
+    var a = document.createElement("a");
+    a.href = "data:" + data;
+    a.download = "data.json";
+    a.innerHTML = "download JSON";
+    a.setAttribute("download", `Merkle-tree.txt`);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   const [value, setValue] = React.useState(0);
@@ -145,12 +158,21 @@ function App() {
           </Grid>
           <Grid item container justify="center" alignItems="center" sm={1}>
             <Button
-              style={{ height: "100%", margin: "0em 0.5em" }}
+              style={{ height: 30, margin: "0em 0.5em" }}
               color="primary"
               variant="outlined"
               onClick={() => createMerkleTree()}
             >
               Generate
+            </Button>
+            <Button
+              disabled={merkleTree === ""}
+              style={{ height: 30, margin: "0em 0.5em" }}
+              color="primary"
+              variant="outlined"
+              onClick={() => downloadMerkleTree()}
+            >
+              Download
             </Button>
           </Grid>
           <Grid
@@ -159,7 +181,8 @@ function App() {
             style={{
               border: "2px solid grey",
               borderRadius: "5px",
-              maxHeight: "500px"
+              maxHeight: "500px",
+              overflowY: "auto"
             }}
           >
             <Typography
@@ -173,6 +196,14 @@ function App() {
               }}
             >
               Generated merkle tree
+              <img
+                src={require("./images/content_copy.png")}
+                style={{
+                  height: 20,
+                  width: 20,
+                  marginLeft: 250
+                }}
+              ></img>
             </Typography>
             <JSONPretty id="json-pretty" data={merkleTree}></JSONPretty>
           </Grid>
