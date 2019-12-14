@@ -1,22 +1,34 @@
 import { Reducer } from "redux";
 import { AppActionTypes, AppActions, AppState } from "./types";
+import produce from "immer";
 
 const initialState: AppState = {
   inputMethod: "direct-input",
-  inputs: []
+  inputs: [],
+  encryptionAlgorithm: ""
 };
 
 const appReducer: Reducer<AppState, AppActionTypes> = (
-  state = initialState,
-  action
+  state: AppState = initialState,
+  action: AppActionTypes
 ) => {
+  
   switch (action.type) {
     case AppActions.ALTER_INPUT_METHOD:
-      return { ...state, inputMethod: action.payload };
+      return  produce(state, draftState => {
+        draftState.inputMethod = action.payload;
+      });      
+
     case AppActions.ALTER_INPUT:
-      return { ...state, inputs: action.payload };
+      return produce(state, draftState => {
+        draftState.inputs = action.payload;
+      });
+      
     case AppActions.ALTER_ENCRYPTION_ALGORITHM:
-      return { ...state, encryptionAlgorithm: action.payload };
+      return produce(state, draftState => {
+        draftState.encryptionAlgorithm = action.payload;
+      });
+
     default:
       return state;
   }

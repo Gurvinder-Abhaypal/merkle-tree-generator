@@ -7,6 +7,7 @@ export enum AppActions {
 export interface AppState {
   inputMethod: string;
   inputs: string[];
+  encryptionAlgorithm: string;
 }
 
 interface AlterInputMethodAction {
