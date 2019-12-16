@@ -13,7 +13,7 @@ import {
   Tab,
   Box
 } from "@material-ui/core";
-
+import FileSaver, { saveAs } from 'file-saver';
 import DirectInput from "components/DirectInput";
 import { alterInputMethodAction } from "store/app/actions";
 import SwipeableViews from "react-swipeable-views";
@@ -71,15 +71,8 @@ function App() {
   };
 
   const downloadMerkleTree = () => {
-    var data = "text/json;charset=utf-8," + encodeURIComponent(merkleTree);
-    var a = document.createElement("a");
-    a.href = "data:" + data;
-    a.download = "data.json";
-    a.innerHTML = "download JSON";
-    a.setAttribute("download", `Merkle-tree.txt`);
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    const blob = new Blob([merkleTree], {type: "text/plain;charset=utf-8"});
+    FileSaver.saveAs(blob, "Merkle-tree.txt");
   };
 
   const [value, setValue] = React.useState(0);
