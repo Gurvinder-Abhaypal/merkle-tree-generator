@@ -3,20 +3,27 @@ import { AppActionTypes, AppActions, AppState } from "./types";
 
 const initialState: AppState = {
   inputMethod: "direct-input",
-  inputs: []
+  inputs: [],
+  encryptionAlgorithm: ""
 };
 
 const appReducer: Reducer<AppState, AppActionTypes> = (
-  state = initialState,
-  action
+  state: AppState = initialState,
+  action: AppActionTypes
 ) => {
   switch (action.type) {
     case AppActions.ALTER_INPUT_METHOD:
-      return { ...state, inputMethod: action.payload };
+        state.inputMethod = action.payload;
+        return state;
+
     case AppActions.ALTER_INPUT:
-      return { ...state, inputs: action.payload };
+        state.inputs = action.payload;
+        return state;
+      
     case AppActions.ALTER_ENCRYPTION_ALGORITHM:
-      return { ...state, encryptionAlgorithm: action.payload };
+        state.encryptionAlgorithm = action.payload;
+        return state;
+
     default:
       return state;
   }
